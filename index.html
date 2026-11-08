@@ -62,8 +62,6 @@ footer{padding:28px 0;color:var(--gray);font-size:14px;border-top:1px solid var(
 .consent a,footer a{color:var(--accent)}
 .err{color:#ff6b5b;font-size:13px;margin-top:6px;min-height:16px}
 .fl{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-#cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;background:#1c1c1e;border:1px solid var(--accent);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:14px;color:#ddd;max-width:760px;margin:0 auto}
-#cookie .btn{padding:10px 18px;font-size:14px}
 </style>
 </head>
 <body>
@@ -161,8 +159,7 @@ footer{padding:28px 0;color:var(--gray);font-size:14px;border-top:1px solid var(
   </div>
 </div></section>
 
-<footer><div class="wrap">© <span id="year"></span> ГрузЮг, Ростов-на-Дону. <span id="phoneFoot"></span><div class="fl"><a href="privacy.html">Политика конфиденциальности</a><a href="consent.html">Согласие на обработку данных</a><a href="#" id="cookieSet">Настройки cookie</a></div><div class="hint" id="legalLine"></div></div></footer>
-<div id="cookie" class="hide"><span>Мы используем Яндекс Метрику, чтобы понимать, как пользуются сайтом. Она ставит cookie. Подробнее в <a href="privacy.html" style="color:var(--accent)">политике</a>.</span><span style="display:flex;gap:8px"><button class="btn ghost" id="ckNo" type="button">Отклонить</button><button class="btn" id="ckYes" type="button">Принять</button></span></div>
+<footer><div class="wrap">© <span id="year"></span> ГрузЮг, Ростов-на-Дону. <span id="phoneFoot"></span><div class="fl"><a href="privacy.html">Политика конфиденциальности</a><a href="consent.html">Согласие на обработку данных</a></div><div class="hint" id="legalLine"></div></div></footer>
 
 <script>
 /* ===== НАСТРОЙКИ — меняйте здесь ===== */
@@ -171,7 +168,6 @@ const CONFIG = {
   legalName: "ИП Фамилия И. О.",    // ИП или ООО полностью
   inn: "000000000000",              // ИНН
   ogrn: "",                         // ОГРНИП / ОГРН
-  metrikaId: "",                    // номер счётчика Яндекс Метрики; пусто = аналитика выключена
   telegram: "your_username",        // имя в Telegram без @
   phone: "+7 (000) 000-00-00",      // телефон для отображения
   phoneRaw: "+70000000000",         // телефон для ссылки
@@ -236,30 +232,17 @@ function calc(){
   lastText = `Здравствуйте! Хочу заказать Газель.\n${t.name}\n${desc}\nРасчёт на сайте: от ${rub(sum)}\nАдреса погрузки и выгрузки: `;
 }
 document.querySelectorAll("select,input").forEach(e => e.addEventListener("input", calc));
-function goal(n){ if(window.ym && CONFIG.metrikaId) ym(+CONFIG.metrikaId,"reachGoal",n); }
 $("order").onclick = () => {
   const name = $("cname").value.trim(), ph = $("cphone").value.trim();
   const err = m => { $("err").textContent = m; };
   if(!name) return err("Укажите имя");
   if(ph.replace(/\D/g,"").length < 10) return err("Укажите телефон полностью");
   if(!$("consent").checked) return err("Нужно согласие на обработку персональных данных");
-  err(""); goal("order");
+  err("");
   const txt = lastText + "\nИмя: " + name + "\nТелефон: " + ph;
   window.open(tgBase + "?text=" + encodeURIComponent(txt), "_blank");
 };
 $("legalLine").textContent = CONFIG.legalName + ", ИНН " + CONFIG.inn + (CONFIG.ogrn ? ", ОГРН(ИП) " + CONFIG.ogrn : "");
-/* Яндекс Метрика: грузится только после согласия на cookie */
-function loadMetrika(){
-  if(!CONFIG.metrikaId || window.ym) return;
-  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
-  ym(+CONFIG.metrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
-}
-function ck(v){ localStorage.setItem("cookieConsent",v); $("cookie").classList.add("hide"); if(v==="yes") loadMetrika(); }
-$("ckYes").onclick = () => ck("yes"); $("ckNo").onclick = () => ck("no");
-$("cookieSet").onclick = e => { e.preventDefault(); $("cookie").classList.remove("hide"); };
-const saved = localStorage.getItem("cookieConsent");
-if(saved==="yes") loadMetrika(); else if(!saved && CONFIG.metrikaId) $("cookie").classList.remove("hide");
-calc();
 </script>
 </body>
 </html>
