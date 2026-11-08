@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Грузоперевозки на Газели по Ростову-на-Дону и всей России — расчёт стоимости онлайн</title>
+<meta name="description" content="Грузоперевозки на Газели по Ростову-на-Дону и по всей России. Рассчитайте стоимость за минуту.">
+<style>
+:root{--bg:#111;--panel:#1c1c1e;--line:#2c2c2e;--gray:#9a9a9f;--accent:#ffb400;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(17,17,17,.95);backdrop-filter:blur(6px);z-index:10}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:800;font-size:20px;letter-spacing:.5px}.logo b{color:var(--accent)}
+.phone{font-weight:700}
+.btn{display:inline-block;background:var(--accent);color:#111;font-weight:700;padding:14px 26px;border-radius:10px;border:0;cursor:pointer;font-size:16px;transition:.15s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--white);border:1px solid #444}
+.hero{padding:72px 0 56px;background:linear-gradient(135deg,#111 55%,#23201a)}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.1;max-width:720px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--gray);font-size:18px;margin:20px 0 30px;max-width:560px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+section{padding:56px 0}
+h2{font-size:clamp(24px,3.5vw,34px);margin-bottom:28px}
+h2 span{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card .n{color:var(--accent);font-weight:800;font-size:28px}
+.card h3{margin:6px 0;font-size:18px}.card p{color:var(--gray);font-size:15px}
+.calc{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+label.f{display:block;font-size:14px;color:var(--gray);margin:16px 0 6px}
+label.f:first-child{margin-top:0}
+select,input[type=number],input[type=text],textarea{width:100%;background:#111;color:#fff;border:1px solid #3a3a3c;border-radius:10px;padding:12px 14px;font-size:16px;font-family:inherit}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{background:#111;color:#ddd;border:1px solid #3a3a3c;border-radius:10px;padding:12px;font-size:15px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#111;border-color:var(--accent);font-weight:700}
+.chk{display:flex;align-items:center;gap:10px;margin-top:12px;cursor:pointer;font-size:15px}
+.chk input{width:20px;height:20px;accent-color:var(--accent)}
+.res{position:sticky;top:84px;align-self:start}
+.price{font-size:44px;font-weight:800;color:var(--accent);line-height:1.1;margin:6px 0}
+.res ul{list-style:none;margin:16px 0;color:var(--gray);font-size:14px}
+.res li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line)}
+.note{font-size:13px;color:var(--gray);margin-top:12px}
+.hint{font-size:13px;color:var(--gray);margin-top:4px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--gray);margin-top:10px}
+.contacts{background:var(--accent);color:#111;border-radius:18px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.contacts h2{margin:0;color:#111}
+.contacts .btn{background:#111;color:#fff}
+footer{padding:28px 0;color:var(--gray);font-size:14px;border-top:1px solid var(--line);margin-top:56px}
+.hide{display:none}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="logo">ГРУЗ<b>ЮГ</b></div>
+  <a class="phone" id="phoneTop" href="#">+7 (___) ___-__-__</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>Грузоперевозки на Газели из <span>Ростова-на-Дону</span> по всей России</h1>
+  <p>Подача от 30 минут, опытные водители, перевозки по городу и по всей России. Узнайте стоимость за минуту.</p>
+  <div class="cta">
+    <a class="btn" href="#calc">Рассчитать стоимость</a>
+    <a class="btn ghost" id="tgTop" href="#" target="_blank" rel="noopener">Написать в Telegram</a>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Почему <span>выбирают нас</span></h2>
+  <div class="grid">
+    <div class="card"><div class="n">30 мин</div><h3>Быстрая подача</h3><p>Машина приедет в удобное время или в течение часа.</p></div>
+    <div class="card"><div class="n">0 ₽</div><h3>Без скрытых платежей</h3><p>Называем цену до заказа и не меняем её по дороге.</p></div>
+    <div class="card"><div class="n">24/7</div><h3>Работаем круглосуточно</h3><p>Ночные и срочные заказы тоже принимаем.</p></div>
+    <div class="card"><div class="n">РФ</div><h3>По всей России</h3><p>Город, область, межгород — в любой регион.</p></div>
+  </div>
+</div></section>
+
+<section id="calc"><div class="wrap">
+  <h2>Калькулятор <span>стоимости</span></h2>
+  <div class="calc">
+    <div class="panel">
+      <label class="f">Тип перевозки</label>
+      <div class="seg" id="modeSeg">
+        <button type="button" data-mode="city" class="on">По городу (по часам)</button>
+        <button type="button" data-mode="inter">Межгород, вся Россия (по км)</button>
+      </div>
+
+      <label class="f">Автомобиль</label>
+      <select id="truck"></select>
+
+      <div id="cityBox">
+        <label class="f" for="hours">Сколько часов нужна машина</label>
+        <input type="number" id="hours" min="1" max="24" step="1" value="3">
+        <div class="hint" id="minHint"></div>
+      </div>
+      <div id="interBox" class="hide">
+        <label class="f" for="km">Расстояние в одну сторону, км</label>
+        <input type="number" id="km" min="1" max="3000" step="1" value="100">
+        <div class="hint">Расстояние можно посмотреть на любой карте. Считаем туда и обратно по тарифу.</div>
+      </div>
+
+
+      <label class="chk"><input type="checkbox" id="night"> Ночное время (22:00–07:00)</label>
+      <label class="chk"><input type="checkbox" id="urgent"> Срочно (подача до 30 минут)</label>
+    </div>
+
+    <div class="panel res">
+      <div style="color:var(--gray);font-size:14px">Ориентировочная стоимость</div>
+      <div class="price" id="price">—</div>
+      <ul id="breakdown"></ul>
+      <button class="btn" style="width:100%" id="order" type="button">Заказать в Telegram</button>
+      <p class="note">Это предварительный расчёт. Точную цену назовёт диспетчер после уточнения маршрута и груза.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Как это <span>работает</span></h2>
+  <div class="grid">
+    <div class="card"><div class="n">1</div><h3>Рассчитайте</h3><p>Укажите время или расстояние и выберите машину.</p></div>
+    <div class="card"><div class="n">2</div><h3>Нажмите «Заказать»</h3><p>Откроется Telegram с готовым сообщением, останется отправить.</p></div>
+    <div class="card"><div class="n">3</div><h3>Подтвердим</h3><p>Диспетчер уточнит детали и назовёт точную цену.</p></div>
+    <div class="card"><div class="n">4</div><h3>Едем</h3><p>Машина приезжает вовремя, оплата по факту.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Частые <span>вопросы</span></h2>
+  <details><summary>Какие машины у вас есть?</summary><p>Газели с кузовом 3 и 4 метра. Подберём под ваш груз по объёму и весу.</p></details>
+  <details><summary>Возите ли вы по всей России?</summary><p>Да, в любой регион России. Цена считается по расстоянию, точную назовёт диспетчер после уточнения маршрута.</p></details>
+  <details><summary>Как происходит оплата?</summary><p>По факту выполнения заказа, наличными или переводом. Предоплата не требуется.</p></details>
+</div></section>
+
+<section><div class="wrap">
+  <div class="contacts">
+    <h2>Нужна машина прямо сейчас?</h2>
+    <a class="btn" id="tgBottom" href="#" target="_blank" rel="noopener">Написать в Telegram</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© <span id="year"></span> ГрузЮг, Ростов-на-Дону. <span id="phoneFoot"></span></div></footer>
+
+<script>
+/* ===== НАСТРОЙКИ — меняйте здесь ===== */
+const CONFIG = {
+  brand: "ГрузЮг",
+  telegram: "your_username",        // имя в Telegram без @
+  phone: "+7 (000) 000-00-00",      // телефон для отображения
+  phoneRaw: "+70000000000",         // телефон для ссылки
+  trucks: [
+    { id: "g3", name: "Газель, кузов 3 м (до 1,5 т)", hour: 800,  km: 28 },
+    { id: "g4", name: "Газель, кузов 4 м (до 1,5 т)", hour: 900,  km: 32 }
+  ],
+  minHours: 2,            // минимальный заказ по городу, часов
+  nightPct: 0.25,         // надбавка за ночь
+  urgentPct: 0.15,        // надбавка за срочность
+  interMinPrice: 3000,    // минимальная цена межгорода
+  interRoundTrip: 2       // км считаются туда-обратно (2) или в одну сторону (1)
+};
+/* ===================================== */
+
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n/10)*10;
+const rub = n => new Intl.NumberFormat("ru-RU").format(fmt(n)) + " ₽";
+let mode = "city";
+
+CONFIG.trucks.forEach(t => $("truck").add(new Option(t.name, t.id)));
+$("minHint").textContent = "Минимальный заказ — " + CONFIG.minHours + " ч.";
+$("year").textContent = new Date().getFullYear();
+["phoneTop"].forEach(i => { $(i).textContent = CONFIG.phone; $(i).href = "tel:" + CONFIG.phoneRaw; });
+$("phoneFoot").textContent = CONFIG.phone;
+const tgBase = "https://t.me/" + CONFIG.telegram;
+["tgTop","tgBottom"].forEach(i => $(i).href = tgBase);
+
+document.querySelectorAll("#modeSeg button").forEach(b => b.onclick = () => {
+  mode = b.dataset.mode;
+  document.querySelectorAll("#modeSeg button").forEach(x => x.classList.toggle("on", x === b));
+  $("cityBox").classList.toggle("hide", mode !== "city");
+  $("interBox").classList.toggle("hide", mode !== "inter");
+  calc();
+});
+
+let lastText = "";
+function calc(){
+  const t = CONFIG.trucks.find(x => x.id === $("truck").value);
+  const rows = [];
+  let sum = 0, desc = "";
+
+  if (mode === "city"){
+    const h = Math.max(CONFIG.minHours, Math.ceil(+$("hours").value || 0));
+    const c = t.hour * h; sum += c;
+    rows.push([`Машина, ${h} ч`, c]);
+    desc = `По городу, ${h} ч`;
+  } else {
+    const km = Math.max(1, +$("km").value || 0);
+    let c = t.km * km * CONFIG.interRoundTrip;
+    if (c < CONFIG.interMinPrice) c = CONFIG.interMinPrice;
+    sum += c;
+    rows.push([`Машина, ${km} км`, c]);
+    desc = `Межгород, ${km} км в одну сторону`;
+  }
+
+  if ($("night").checked){ const c = sum * CONFIG.nightPct; rows.push(["Ночная надбавка", c]); sum += c; desc += ", ночь"; }
+  if ($("urgent").checked){ const c = sum * CONFIG.urgentPct; rows.push(["Срочность", c]); sum += c; desc += ", срочно"; }
+
+  $("price").textContent = "от " + rub(sum);
+  $("breakdown").innerHTML = rows.map(r => `<li><span>${r[0]}</span><span>${rub(r[1])}</span></li>`).join("");
+  lastText = `Здравствуйте! Хочу заказать Газель.\n${t.name}\n${desc}\nРасчёт на сайте: от ${rub(sum)}\nАдреса погрузки и выгрузки: `;
+}
+document.querySelectorAll("select,input").forEach(e => e.addEventListener("input", calc));
+$("order").onclick = () => window.open(tgBase + "?text=" + encodeURIComponent(lastText), "_blank");
+calc();
+</script>
+</body>
+</html>
